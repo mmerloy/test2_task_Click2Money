@@ -17,9 +17,8 @@ import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 * */
 public class SearchPage {
     private final SelenideElement imagesTab = $x("//*[@id=\"hdtb-msb\"]/div[1]/div/div[2]/a");
-    //нахождение 3 картинки по умолчанию
-    //private final SelenideElement imageNum = $x("//*[@id=\"islrg\"]/div[1]/div[3]/a[1]");
-    private final SelenideElement thirdImage = $x("//*[@id=\"islrg\"]/div[1]/div[3]/a[1]");
+    //выбор 3-ей картинки для скачивания по умолчанию
+    private SelenideElement image = $x("//*[@id=\"islrg\"]/div[1]/div[3]/a[1]");
     private final SelenideElement myImage = $x("//*[@id=\"Sva75c\"]/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[3]/div/a/img");
     private final String filePath = new File(".").getAbsolutePath() + "\\src\\result-image";
 
@@ -33,29 +32,20 @@ public class SearchPage {
     }
 
     /**
-     * Метод для замены номера картинки для скачивания
-     * @return новый XPath для нахождения картинки
+     * Метод для выбора номера картинки для скачивания
      */
-    public String changeCharInPosition(int position, char ch, String str)
+    public void chooseImageNum(int num)
     {
-        char[] charArray = str.toCharArray();
-        charArray[position] = ch;
-        return new String(charArray);
+        image = $x(String.format("//*[@id=\"islrg\"]/div[1]/div[%d]/a[1]", num));
     }
 
-//    public void chooseImage()
-//    {
-//        String str = String.valueOf(imageNum);
-//        str = changeCharInPosition();
-//    }
-
     /**
-     * Комментарий на будущее: создать метод, который создает нужный XPath для выбора различного номера картинки
-     * clickThirdImage() открывает 3-ю картинку
+     * clickImage() открывает n-ю картинку
      */
-    public SearchPage clickThirdImage()
+    public SearchPage clickImage()
     {
-        thirdImage.click();
+        chooseImageNum(3);//выбор 3-ей картинки для скачивания
+        image.click();
         try {
             Thread.sleep(1000);//задержка для прогрузки картинки
         } catch (InterruptedException e) {

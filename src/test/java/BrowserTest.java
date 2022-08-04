@@ -19,7 +19,7 @@ public abstract class BrowserTest extends BaseTest
         MainPage mainPage = new MainPage(BASE_URL);
         mainPage.search(SEARCH_STRING)
                 .openImagesTab()
-                .clickThirdImage()
+                .clickImage()
                 .downloadImage();
     }
 }
