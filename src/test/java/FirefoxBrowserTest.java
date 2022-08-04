@@ -1,5 +1,8 @@
 import com.codeborne.selenide.Configuration;
 
+/**
+ *Тестирование скачивания картинки в Firefox
+ */
 public class FirefoxBrowserTest extends BrowserTest {
 
     public FirefoxBrowserTest(){

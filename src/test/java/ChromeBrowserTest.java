@@ -1,5 +1,8 @@
 import com.codeborne.selenide.Configuration;
 
+/**
+ *Тестирование скачивания картинки в Chrome
+ */
 public class ChromeBrowserTest extends BrowserTest {
 
     public ChromeBrowserTest(){
