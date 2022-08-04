@@ -16,7 +16,6 @@ public class MainPage
         Selenide.open(url);
     }
 
-
     /**
      * Выполняется поиск в поисковой системе необходимой картинки и нажимается кнопка Enter
      * @param searchString поисковая строка
