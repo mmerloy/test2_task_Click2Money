@@ -4,38 +4,33 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 
-
 abstract public class BaseTest
 {
-
-//    public enum BrowserType {
-//        Chroum,
-//        Firefox,
-//    }
-
-    public void setUp()//add javaDoc and comments
-    {
-       // chooseBrowser();?
-        WebDriverManager.chromedriver().setup();
-        Configuration.browser = "chrome";
-        Configuration.driverManagerEnabled = true;
-        Configuration.browserSize = "1600x900";
-        Configuration.headless = true;
+    public enum BrowserType {
+        Chrome,
+        Firefox,
     }
 
-//    protected void chooseBrowser(BrowserType browser)
-//    {
-//        switch (browser) {
-//            case Chroum -> {
-//                WebDriverManager.chromedriver().setup();
-//                Configuration.browser = "chrome";
-//            }
-//            case Firefox -> {
-//                WebDriverManager.firefoxdriver().setup();
-//                Configuration.browser = "firefox";
-//            }
-//        }
-//    }
+    protected BaseTest(BrowserType browser)
+    {
+        switch (browser) {
+            case Chrome -> {
+                WebDriverManager.chromedriver().setup();
+                Configuration.browser = "chrome";
+            }
+            case Firefox -> {
+                WebDriverManager.firefoxdriver().setup();
+                Configuration.browser = "firefox";
+            }
+        }
+    }
+
+    public void setUp()
+    {
+        Configuration.driverManagerEnabled = true;
+        Configuration.browserSize = "1300x900";
+        Configuration.headless = false;
+    }
 
     @Before
     public void init()
